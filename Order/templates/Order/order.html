@@ -1,0 +1,12 @@
+{% extends 'Base.html' %}
+{% block title %}Order{% endblock %}
+{% block content %}
+    <h1 style="text-align: center"><i>Check out</i></h1><hr><br>
+    <h4>Total price you must pay : {{order.get_total_cost}} Rial</h4><br><br>
+    <a class="btn btn-warning" href="{% url 'Order:pay_order' order.id %}">Pay</a><br><br>
+    <form action="{% url 'Order:coupon' order.id %}" method="post" novalidate class="col-md-6">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Discount">
+    </form>
+{% endblock %}
