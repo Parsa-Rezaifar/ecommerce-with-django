@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+  <div class="container-fluid">
+      <div class="navbar-nav">
+          <a style="color: yellow" class="nav-link active" href="{% url 'Home:home' %}">Home</a>
+          {% if not request.user.is_authenticated %}
+              <a style="color: limegreen" class="nav-link active" href="{% url 'accounts:register' %}">Register</a>
+              <a style="color: limegreen" class="nav-link active" href="{% url 'accounts:login' %}">Login</a>
+          {% else %}
+              <a style="color: red" class="nav-link active" href="{% url 'accounts:logout' %}">Logout</a>
+          {% endif %}
+          {% if request.user.is_admin %}
+              <a style="color: deepskyblue" class="nav-link active" href="{% url 'Home:bucket' %}">Bucket</a>
+          {% endif %}
+          <a style="color: orange" class="nav-link active" href="{% url 'Order:order' %}">Cart {{cart|length}}</a>
+      </div>
+  </div>
+</nav>
