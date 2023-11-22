@@ -1,0 +1,10 @@
+{% extends 'Base.html' %}
+{% block title %}Verification Code{% endblock %}
+{% block content %}
+    <h1 style="text-align: center"><i>Verification Code</i></h1><hr><br>
+    <form action="" method="post" class="col-md-6" novalidate>
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Verify">
+    </form>
+{% endblock %}
