@@ -1,2 +1,6 @@
 # Online_Shop
 An Online_Shop with Django project
+In this project ,  i worked on an online shop which is created using django frame work in high level of that...
+We user another database "POSTGRES" instead of sqlit3 which is default of dj and we user redis and celery and other tools in this one\
+In the project you can see procuts main page and also see categories and sub-categories and also a specific page for each product
+Also you can add products to your card or remove it and at the end you can connect to payment port to pay...
