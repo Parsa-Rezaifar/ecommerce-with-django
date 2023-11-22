@@ -1,0 +1,39 @@
+{% extends 'Base.html' %}
+{% load static %}
+{% block extra_properties %}
+    <link rel="stylesheet" href="{% static 'Home/CSS/Home_Page.css' %}">
+{% endblock %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+    <h1 style="text-align: center"><i>Home Page</i></h1><hr><br>
+    <h3 style="text-align: center"><i>Categories</i></h3><br>
+    {% for category in categories %}
+        <div class="btn-group">
+            <a style="color: ghostwhite" href="{{category.get_absolute_url}}" class="btn btn-secondary">{{category.category_name}}</a>
+            <button type="button" class="btn btn-dark dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="btn btn-dark dropdown-menu">
+                {% for sub in category.sub_category.all %}
+                    <li><a style="color: white" class="dropdown-item" href="{{sub.get_absolute_url}}">{{sub.category_name}}</a></li>
+                {% empty %}
+                    <small style="margin-left: 18px">No sub category(ies)</small>
+                {% endfor %}
+            </ul>
+        </div>
+    {% empty %}
+        <p class="alert alert-danger" style="text-align: center">No category(ies) added yet</p>
+    {% endfor %}<hr>
+    <h3 style="text-align: center"><i>Products</i></h3><br>
+    {% for product in products %}
+        <div class="card" style="width: 18rem; display: inline-block">
+            <img src="{{product.product_image.url}}" class="card-img-top" alt="This photo is {{product.product_name}}">
+            <div class="card-body">
+                 <h3 class="card-title">{{product.product_name}}</h3>
+                 <a href="{{product.get_absolute_url}}" class="btn btn-primary">More details</a>
+            </div>
+        </div>
+    {% empty %}
+        <p class="alert alert-danger" style="text-align: center">No product(s) added yet</p>
+    {% endfor %}
+{% endblock %}
